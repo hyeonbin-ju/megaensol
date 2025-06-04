@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메가엔솔(주)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: #0a1451;
+            color: white;
+        }
+
+        .navbar {
+            background-color: white;
+            padding: 0.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+            border-bottom: 1px solid rgba(10, 20, 81, 0.1);
+        }
+
+        .navbar-container {
+            max-width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+            max-width: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #0a1451;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #1a2561;
+        }
+
+        .hero {
+            background-color: white;
+            padding: 70px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: visible;
+        }
+
+        .hero-content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            gap: 1.5rem;
+            position: relative;
+            flex-direction: column;
+        }
+
+        .hero-logo {
+            width: auto;
+            height: 250px;
+            object-fit: contain;
+            display: block;
+            max-width: none;
+            margin-bottom: 0;
+            animation: heroLogoScale 1.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes heroLogoScale {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            color: #0a1451;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease-out forwards;
+            animation-delay: 0.5s;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            background-color: #0a1451;
+            color: white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            padding: 2rem;
+            text-align: center;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .service-content {
+            padding: 2rem;
+            flex-grow: 1;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            padding: 2rem;
+            height: 100%;
+        }
+
+        .map {
+            height: 400px;
+            margin-top: 2rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer {
+            background: #060c35;
+            color: white;
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-description {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 1400px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-logo {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .hero-logo {
+                height: 150px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="logo">
+                <img src="./가로.png" alt="메가엔솔 로고">
+            </a>
+            <div class="nav-links">
+                <a href="#about">회사소개</a>
+                <a href="#services">서비스</a>
+                <a href="#contact">연락처</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <img src="./가로.png" alt="메가엔솔 로고" class="hero-logo">
+            <h2 class="hero-title">최첨단 클린룸 솔루션의 리더</h2>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2>회사 소개</h2>
+            <p class="section-description">
+                메가엔솔(주)는 첨단 클린룸 설계 및 시공 전문 기업으로서,<br>
+                반도체, 디스플레이, 제약, 바이오, 의료기기 등 다양한 산업 분야에서<br>
+                최고의 클린룸 솔루션을 제공하고 있습니다.
+            </p>
+            <div class="grid">
+                <div class="card">
+                    <h3>전문성</h3>
+                    <p>20년 이상의 클린룸 설계 및 시공 경험을 보유한 전문가 팀</p>
+                </div>
+                <div class="card">
+                    <h3>기술력</h3>
+                    <p>최신 기술과 장비를 활용한 최적의 클린룸 솔루션 제공</p>
+                </div>
+                <div class="card">
+                    <h3>신뢰성</h3>
+                    <p>철저한 품질관리와 사후관리로 고객 만족도 극대화</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <div class="container">
+            <h2>서비스</h2>
+            <p class="section-description">메가엔솔(주)는 클린룸 관련 토탈 솔루션을 제공합니다</p>
+            <div class="grid">
+                <div class="service-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjYwIiB4PSIxMCIgeT0iMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjEwIiB5MT0iMjAiIHgyPSI1MCIgeTI9IjUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjkwIiB5MT0iMjAiIHgyPSI1MCIgeTI9IjUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iMTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+" alt="클린룸 설계" style="background-color: #0a1451;">
+                    <div class="service-content">
+                        <h3>클린룸 설계</h3>
+                        <p>고객의 요구사항에 맞는 최적의 클린룸 설계 서비스를 제공합니다. 공기흐름 분석, 온습도 제어, 청정도 관리 등 종합적인 설계를 수행합니다.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3Qgd2lkdGg9IjcwIiBoZWlnaHQ9IjUwIiB4PSIxNSIgeT0iMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjE1IiB5MT0iMzAiIHgyPSIzMCIgeTI9IjE1IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI4NSIgeTE9IjMwIiB4Mj0iNzAiIHkyPSIxNSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMzAiIHkxPSIxNSIgeDI9IjcwIiB5Mj0iMTUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3Qgd2lkdGg9IjIwIiBoZWlnaHQ9IjMwIiB4PSI0MCIgeT0iNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+" alt="클린룸 시공" style="background-color: #0a1451;">
+                    <div class="service-content">
+                        <h3>클린룸 시공</h3>
+                        <p>설계된 클린룸의 완벽한 구현을 위한 전문 시공 서비스를 제공합니다. 첨단 장비와 숙련된 기술자들이 고품질의 시공을 보장합니다.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjUwIiB5MT0iMjAiIHgyPSI1MCIgeTI9IjUwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI1MCIgeTE9IjUwIiB4Mj0iNzAiIHkyPSI1MCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1IiBmaWxsPSIjZmZmIi8+PC9zdmc+" alt="클린룸 유지보수" style="background-color: #0a1451;">
+                    <div class="service-content">
+                        <h3>클린룸 유지보수</h3>
+                        <p>클린룸의 지속적인 성능 유지를 위한 정기적인 점검 및 유지보수 서비스를 제공합니다. 24시간 긴급 대응 서비스도 함께 제공됩니다.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHJlY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjgwIiB4PSIyMCIgeT0iMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjMwIiB5MT0iMzAiIHgyPSI3MCIgeTI9IjMwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIzMCIgeTE9IjQ1IiB4Mj0iNzAiIHkyPSI0NSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMzAiIHkxPSI2MCIgeDI9IjcwIiB5Mj0iNjAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+" alt="클린룸 컨설팅" style="background-color: #0a1451;">
+                    <div class="service-content">
+                        <h3>클린룸 컨설팅</h3>
+                        <p>클린룸 구축에 필요한 전문적인 자문 서비스를 제공합니다. 비용 최적화, 에너지 효율화, 규정 준수 등 다양한 측면의 컨설팅을 제공합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>연락처</h2>
+            <p class="section-description">언제든지 문의해 주시면 친절하게 답변 드리겠습니다</p>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>회사 정보</h3>
+                    <p>메가엔솔(주)</p>
+                    <p>경기도 수원시 권선구 산업로92번길57 3층(고색동)</p>
+                    <p>전화: 031-302-0780</p>
+                </div>
+            </div>
+            <div class="map">
+                <img src="./지도.jpg" alt="메가엔솔 위치" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h3>메가엔솔(주)</h3>
+                <p>주소: 경기도 수원시 권선구 산업로92번길57 3층(고색동)</p>
+            </div>
+            <div>
+                <p>전화: 031-302-0780</p>
+                <p>사업자등록번호: 383-87-03150</p>
+            </div>
+            <p>© 2024 메가엔솔(주). All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html> 
